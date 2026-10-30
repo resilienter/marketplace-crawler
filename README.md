@@ -1,5 +1,6 @@
 # marketplace-crawler
 
+[![CI](https://github.com/resilienter/marketplace-crawler/actions/workflows/ci.yml/badge.svg)](https://github.com/resilienter/marketplace-crawler/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 A small scraping pipeline for property listings. It fetches catalog pages with
@@ -69,19 +70,10 @@ The HTTP 200 lines come from a fixture session that maps catalog URLs to the HTM
 
 ## Decisions
 
-**One cooldown for all threads.** When any worker gets a 429, every worker waits.
-With per-thread backoff, the other threads keep sending requests to a server that has already said no.
-The wait is `base × multiplier^(n−1)`, capped, plus a small random part.
-`Retry-After` is honoured, up to the configured cap.
-
-**Upsert by listing ID.** Re-running the pipeline updates changed rows and skips
-unchanged ones instead of appending duplicates.
-
-**`RAW` writes to Sheets.** With `USER_ENTERED`, a value like `5/12` can be read
-as a date and scraped text starting with `=` can run as a formula.
-
-**Fixtures instead of live sites.** The demo is repeatable and does not send
-requests to anyone.
+- **One cooldown for all threads.** When any worker gets a 429, every worker waits. Backoff is `base × multiplier^(n−1)`, capped, with jitter; `Retry-After` is honoured up to cap.
+- **Upsert by listing ID.** Re-running updates changed rows and skips unchanged ones instead of appending duplicates.
+- **`RAW` writes to Sheets.** Prevents values like `5/12` from becoming dates and escaped strings from executing as formulas.
+- **Fixtures instead of live sites.** Reproducible demo without sending live network traffic.
 
 ## Limitations
 
