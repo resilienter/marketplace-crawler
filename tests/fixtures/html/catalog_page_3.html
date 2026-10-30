@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metropolis Realty - Property Search (Page 3)</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --badge-amber: #fef3c7;
+            --badge-amber-text: #92400e;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 24px;
+        }
+        .header {
+            max-width: 1040px;
+            margin: 0 auto 24px auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 16px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: var(--primary);
+        }
+        .header .meta {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .catalog {
+            max-width: 1040px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+        .property-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+        .card-image-placeholder {
+            height: 180px;
+            background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 14px;
+            position: relative;
+        }
+        .card-body {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .price-container {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        .price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+        .title {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-bottom: 12px;
+        }
+        .title h3 {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+        .specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .area {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+        .pagination {
+            max-width: 1040px;
+            margin: 32px auto 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+        .page-link {
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            background: #ffffff;
+            text-decoration: none;
+            color: var(--text-main);
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        .page-link.active {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div>
+            <h1>Metropolis Realty Portal</h1>
+            <div class="meta">Verified Listings Feed • Live Market Catalog</div>
+        </div>
+        <div>
+            <span class="meta">Showing Page 3 of 3</span>
+        </div>
+    </header>
+
+    <main class="catalog">
+        <!-- Listing 107: UK Format £ -->
+        <article class="property-card" data-name="ListingCard">
+            <div class="card-image-placeholder">
+                <span>PHOTO PREVIEW</span>
+            </div>
+            <div class="card-body">
+                <div class="price-container">
+                    <span class="price">£285,000</span>
+                </div>
+                <a href="/property/107" class="title">
+                    <h3>Victorian Terrace Apartment in West End</h3>
+                </a>
+                <div class="specs">
+                    <span class="area">65.0 sqm</span>
+                    <span class="rooms">2 rooms</span>
+                    <span class="details">2/3 fl</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Listing 108: Sharp Price Anomaly for Arbitrage Detection -->
+        <article class="property-card" data-name="ListingCard">
+            <div class="card-image-placeholder">
+                <span>PHOTO PREVIEW</span>
+            </div>
+            <div class="card-body">
+                <div class="price-container">
+                    <span class="price">$145,000</span>
+                </div>
+                <a href="/property/108" class="title">
+                    <h3>Urgent Sale: High-Floor Modern Condo</h3>
+                </a>
+                <div class="specs">
+                    <span class="area">58.0 sqm</span>
+                    <span class="rooms">2 rooms</span>
+                    <span class="details">14/20 fl</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Listing 109: Malformed card without price (Testing scraper resilience) -->
+        <article class="property-card" data-name="ListingCard">
+            <div class="card-image-placeholder">
+                <span>PHOTO PREVIEW</span>
+            </div>
+            <div class="card-body">
+                <a href="/property/109" class="title">
+                    <h3>Price Upon Request: Commercial Corner Office</h3>
+                </a>
+                <div class="specs">
+                    <span class="area">180.0 sqm</span>
+                    <span class="rooms">5 rooms</span>
+                    <span class="details">1/1 fl</span>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="pagination">
+        <a href="/properties?page=1" class="page-link">1</a>
+        <a href="/properties?page=2" class="page-link">2</a>
+        <a href="/properties?page=3" class="page-link active">3</a>
+    </footer>
+</body>
+</html>
