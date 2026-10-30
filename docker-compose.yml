@@ -1,0 +1,17 @@
+services:
+  crawler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: marketplace_crawler
+    restart: on-failure
+    env_file:
+      - path: .env
+        required: false
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./dumps:/app/dumps
+      - ./config:/app/config
+    environment:
+      - PYTHONUNBUFFERED=1
