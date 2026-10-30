@@ -172,11 +172,7 @@ def run_pipeline(simulate_anomaly: bool = False, reset_history: bool = False) ->
 
     history_file = settings.data_dir / "price_history.json"
     fallback_seed = (
-        Path(__file__).resolve().parent.parent
-        / "tests"
-        / "fixtures"
-        / "data"
-        / "seed_prices.json"
+        Path(__file__).resolve().parent.parent / "tests" / "fixtures" / "data" / "seed_prices.json"
     )
 
     if reset_history and history_file.exists():
