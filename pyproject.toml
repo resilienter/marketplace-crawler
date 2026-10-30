@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "marketplace-crawler"
+version = "2.0.0"
+description = "Property listings scraping pipeline with thread-safe rate-limiting and Google Sheets sync"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "resilienter" }
+]
+
+dependencies = [
+    "requests>=2.31.0",
+    "lxml>=5.1.0",
+    "pydantic>=2.10.0",
+    "pydantic-settings>=2.2.0",
+    "google-api-python-client>=2.120.0",
+    "google-auth>=2.28.0",
+]
+
+[project.scripts]
+marketplace-crawler = "src.main:main"
+
+[project.optional-dependencies]
+stealth = [
+    "curl_cffi>=0.7.0",
+]
+dev = [
+    "ruff>=0.4.0",
+    "mypy>=1.10.0",
+    "pytest>=8.2.0",
+]
+
+[tool.setuptools]
+packages = ["src", "src.core", "src.models", "src.scrapers", "src.services"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = false
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
