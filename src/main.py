@@ -136,10 +136,7 @@ def crawl_page_worker(crawler: MarketplaceCrawler, page: int) -> tuple[int, list
 
 
 def run_pipeline(simulate_anomaly: bool = False, reset_history: bool = False) -> None:
-    log.info(
-        "Starting Resilient Marketplace Crawler Pipeline (Target: %s)",
-        settings.crawler_target_name,
-    )
+    log.info("Starting crawler (target: %s)", settings.crawler_target_name)
     start_time = datetime.now(UTC)
 
     session = create_pipeline_session()
@@ -147,9 +144,7 @@ def run_pipeline(simulate_anomaly: bool = False, reset_history: bool = False) ->
     telegram = TelegramNotifier()
     if telegram.enabled:
         log.info("Telegram alerting active (Target Chat ID: %s)", telegram.chat_id)
-        telegram.send_message(
-            "🚀 <b>Marketplace Crawler Pipeline Started</b>\nMonitoring catalog pages..."
-        )
+        telegram.send_message("<b>Marketplace Crawler Started</b>\nMonitoring catalog pages...")
 
     gsheets: GoogleSheetsWriter | None = None
     service_account_file = settings.resolved_service_account_path
@@ -268,7 +263,7 @@ def run_pipeline(simulate_anomaly: bool = False, reset_history: bool = False) ->
 
     duration = (datetime.now(UTC) - start_time).total_seconds()
     log.info(
-        "Pipeline finished in %.2fs. Total unique listings: %d | Price anomaly alerts: %d",
+        "Crawler finished in %.2fs. Total unique listings: %d | Price anomaly alerts: %d",
         duration,
         len(unique_records),
         len(signals),

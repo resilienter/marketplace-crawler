@@ -28,14 +28,12 @@ class TelegramNotifier:
 
     def send_message(self, text: str, parse_mode: str = "HTML") -> bool:
         if not self.enabled:
-            # Informative console feedback for demo/development runs without live bot credentials
-            log.info("[TELEGRAM DRY-RUN] Dispatch skipped (no credentials provided):")
             clean_preview = (
                 text.replace("🚨", "[ALERT]").replace("🔥", "[FIRE]").splitlines()[0]
                 if text
                 else "Empty"
             )
-            log.info("                    >> %s", clean_preview)
+            log.info("[TELEGRAM DRY-RUN] Dispatch skipped (no credentials): >> %s", clean_preview)
             return False
 
         url = f"https://api.telegram.org/bot{self.bot_token}/sendMessage"
